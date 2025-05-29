@@ -10,9 +10,10 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe(),
   );
-  app.enableCors({
-    origin: 'https://job-management-admin-ui-ogs2.vercel.app/', 
-    credentials: true,             
+   app.enableCors({
+    origin: 'https://job-management-admin-ui-ogs2.vercel.app', 
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
   });
   const port = configService.get<number>('PORT') || 5000;
   await app.listen(port ?? 5000);
