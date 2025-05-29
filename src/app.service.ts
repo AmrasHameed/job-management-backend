@@ -7,7 +7,6 @@ import { Job } from './jobs.entity';
 import { CreateJobDto } from './create-job.dto';
 import { JobFiltersDto } from './filter-jobs.dto';
 
-
 @Injectable()
 export class AppService {
   constructor(
@@ -16,32 +15,29 @@ export class AppService {
   ) {}
 
   async createJob(createJobDto: CreateJobDto): Promise<Job> {
-    const job = this.jobRepository.create(createJobDto );
+    const job = this.jobRepository.create(createJobDto);
     return this.jobRepository.save(job);
   }
 
   async getJobs(filters: JobFiltersDto): Promise<Job[]> {
-  const { searchQuery, location, jobType, minSalary ,maxSalary } = filters;
+    const { searchQuery, location, jobType, minSalary, maxSalary } = filters;
 
-  const where: any = {};
+    const where: any = {};
 
-  if (searchQuery) {
-    where.title = ILike(`%${searchQuery}%`);
+    if (searchQuery) {
+      where.title = ILike(`%${searchQuery}%`);
+    }
+
+    if (location) {
+      where.location = ILike(`%${location}%`);
+    }
+
+    if (jobType) {
+      where.job_type = ILike(jobType);
+    }
+    console.log(minSalary, maxSalary);
+    where.salary_range = Between(minSalary, maxSalary);
+
+    return this.jobRepository.find({ where });
   }
-
-  if (location) {
-    where.location = ILike(`%${location}%`);
-  }
-
-  if (jobType) {
-    where.job_type = ILike(jobType);;
-  }
-  if (minSalary && maxSalary) {
-    console.log(minSalary,maxSalary)
-    where.salary_range = Between(minSalary,maxSalary);
-  }
-
-  return this.jobRepository.find({ where });
-}
-
 }
