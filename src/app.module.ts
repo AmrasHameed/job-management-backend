@@ -10,7 +10,7 @@ import { Job } from './jobs.entity';
   imports: [
      TypeOrmModule.forRoot({
       type: 'postgres', 
-      host: 'localhost',
+      host: 'dpg-d0s44hre5dus73a3u81g-a',
       port: 5432,
       username: 'jobmanagement_user',
       password: 'zgfVwgPPHaBOowQKOZn7na6yDcaDVX9K',
