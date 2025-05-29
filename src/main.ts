@@ -11,7 +11,7 @@ async function bootstrap() {
     new ValidationPipe(),
   );
   app.enableCors({
-    origin: 'http://localhost:3000', 
+    origin: 'https://job-management-admin-ui-ogs2.vercel.app/', 
     credentials: true,             
   });
   const port = configService.get<number>('PORT') || 5000;

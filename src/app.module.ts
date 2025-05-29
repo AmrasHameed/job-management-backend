@@ -12,12 +12,11 @@ import { Job } from './jobs.entity';
       type: 'postgres', 
       host: 'localhost',
       port: 5432,
-      username: 'postgres',
-      password: 'amras',
+      username: 'jobmanagement_user',
+      password: 'zgfVwgPPHaBOowQKOZn7na6yDcaDVX9K',
       database: 'jobmanagement',
       entities: [Job],
-      autoLoadEntities: true,
-      synchronize: true, // disable in production!
+      synchronize: true, 
     }),
     TypeOrmModule.forFeature([Job]),
     ConfigModule.forRoot({
